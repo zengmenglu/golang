@@ -47,6 +47,9 @@ http.ListenAndServe(port, router)
 ```
 
 ## Binding
+
+Binding的功能是将请求中携带的数据与目标数据结构进行匹配的过程。可以通过Binding获取请求中的数据，同时gin框架结合了[validator](https://godoc.org/github.com/go-playground/validator)
+的功能，可以进行数据验证。
 常用：
 ```
 var data Data
@@ -54,7 +57,20 @@ err := c.ShouldBind(&data) // for json or xml, c is *gin.Context
 err := c.ShouldBindJSON(&data) // for json
 err := c.ShouldBindXML(&data) // for xml
 err := c.ShouldBindUri(&data) // for uri
+err := c.ShouldBindQuery(&data) // for query
 ```
+
+## 获取POST请求表单以及查询字段
+```
+// 例如uri：localhost:8080/form_post?id=123&page=1
+id := c.Query("id") // 获取查询字段中id的值, 如果没有这个字段，返回零值。c is *gin.Context
+page := c.DefaultQuery("page", "0") // 获取查询字段中page的值，如果没有这个字段，返回设定的默认值
+
+// 例如post表单中包含{"message":"this is message", "name": "this is name"}
+message := c.PostForm("message") // 获取post表单数据
+name := c.DefaultPostForm("name", "anonymous") // if no data,return default value
+```
+
 
 # Get Start
 
