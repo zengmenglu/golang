@@ -9,7 +9,7 @@ import (
 
 func TestBinding(t *testing.T) {
 	data := `{"message":"aha binding","nick":"aha nil"}`
-	route := setRoute()
+	route := setFormRoute()
 	rsp := httptest.NewRecorder()
 	req := httptest.NewRequest(http.MethodPost, "/form_post", strings.NewReader(data))
 	route.ServeHTTP(rsp, req)

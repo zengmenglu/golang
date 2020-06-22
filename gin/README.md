@@ -46,6 +46,16 @@ router.Run(port...) // 可变长参数，0～1个参数。如果入参为空，�
 http.ListenAndServe(port, router)
 ```
 
+## Binding
+常用：
+```
+var data Data
+err := c.ShouldBind(&data) // for json or xml, c is *gin.Context
+err := c.ShouldBindJSON(&data) // for json
+err := c.ShouldBindXML(&data) // for xml
+err := c.ShouldBindUri(&data) // for uri
+```
+
 # Get Start
 
 ## basic http request handle
@@ -87,8 +97,9 @@ func TestPingRoute(t *testing.T) {
 ```
 
 > 参考资料
->* 源码：https://github.com/gin-gonic/gin
->* 官网：https://github.com/gin-gonic/gin
->* 中文翻译：https://github.com/skyhee/gin-doc-cn#request
+>* gin源码：https://github.com/gin-gonic/gin
+>* gin官方文档https://gin-gonic.com/zh-cn/docs/
+>* gin中文翻译：https://github.com/skyhee/gin-doc-cn#request
+>* validator官方文档: https://godoc.org/github.com/go-playground/validator
 
 
