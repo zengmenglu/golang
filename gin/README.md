@@ -1,5 +1,5 @@
 # 功能
-gin提供了go http web框架。主要是封装了go http库，并额外提供路由组的封装，以及前缀树的路由匹配，当需要处理的http请求的路由url较多时，路由匹配性能较好。
+gin提供了go http web框架。主要是封装了go http库，并额外提供路由组的封装，以及前缀树的路由匹配，当需要匹配的路由url较多时，性能较好。[【性能数据】](https://gin-gonic.com/zh-cn/docs/benchmarks)
 
 # 框架核心技术
 * 责任链模式：采用责任链模式，将http的处理函数（中间件）加入到责任链，当匹配到http请求时，执行责任链中的方法。
@@ -296,6 +296,19 @@ c.Redirect(httpCode, newLocation)
 ```
 * http code取值范围201,3XX.
 * newLocation 可以为相对路径，则内部路由；也可以是网址，则外部重定向。
+
+例：
+```
+// inner
+r.GET("/inner", func(c *gin.Context) {
+	c.Redirect(http.StatusFound, "/pong")
+})
+
+// outter
+r.GET("/outer", func(c *gin.Context) {
+	c.Redirect(http.StatusMovedPermanently, "https://www.baidu.com/")
+})
+```
 
 ### 消息转发
 通过http包发出http请求，再通过c.DataFromReader()将结果回写。例：
