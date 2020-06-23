@@ -71,6 +71,9 @@ message := c.PostForm("message") // 获取post表单数据
 name := c.DefaultPostForm("name", "anonymous") // if no data,return default value
 ```
 
+## 返回数据渲染
+
+返回数据支持json, HTML, xml, yaml, protobuf, string格式。
 
 # Get Start
 
