@@ -5,11 +5,6 @@ import (
 	"net/http"
 )
 
-type ProtoData struct {
-	Label *string `protobuf:"bytes,1,req,name=label" json:"label,omitempty"`
-	Reps  []int64 `protobuf:"varint,3,rep,name=reps" json:"reps,omitempty"`
-}
-
 func renderRoute() *gin.Engine {
 	r := gin.Default()
 	r.GET("/json", func(c *gin.Context) {
