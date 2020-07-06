@@ -79,11 +79,18 @@ func main(){
 @summary	|操作内容的简短总结
 @accept	|API可consume的MIME类型列表, MIME类型(Multipurpose Internet Mail Extensions type)详见后文注释规范详情链接。
 @produce	|API可以produce的MIME类型列表
-@param	|API参数,格式: param_name param_type data_type is_mandatory(bool值) comment_attribute(非必填).其中param_type包括 path, query 等。
+@param	|API参数,格式: param_name param_type data_type is_mandatory(bool值) comment_attribute(非必填)。
 @security|API Security
 @success	|成功响应，格式： return_code {param_type} data_type comment
 @failure	|失败响应， 格式： return_code {param_type} data_type comment
 @router	|路由，格式: path [httpMethod]
+
+@param中param_type支持：
+* query
+* path
+* header
+* body
+* formData
 
 响应消息中，param_type:
 * object (struct)
@@ -121,7 +128,7 @@ func get(c *gin.Context){
 ![](pic/swag_api.png)
 
 > 注释规范详见：
->* https://github.com/swaggo/swag
+>* https://github.com/swaggo/swag/blob/master/README_zh-CN.md
 
 ## 安装Swag CLI
 
