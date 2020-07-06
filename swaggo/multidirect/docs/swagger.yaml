@@ -12,5 +12,15 @@ info:
   termsOfService: http://swagger.io/terms/
   title: swaggo multidirect
   version: "1.0"
-paths: {}
+paths:
+  /ping:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"code":200,"data":{},"msg":"ok"}'
+          schema:
+            type: string
+      summary: 路由检测
 swagger: "2.0"

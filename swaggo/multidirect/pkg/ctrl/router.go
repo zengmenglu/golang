@@ -5,7 +5,7 @@ import (
 	"github.com/swaggo/files"
 	"github.com/swaggo/gin-swagger"
 	"swaggo/multidirect/pkg/ctrl/v0"
-	_ "swaggo/multidirect/cmd/docs"
+	_ "swaggo/multidirect/docs"
 )
 
 func HttpRouter() *gin.Engine {

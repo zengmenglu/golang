@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server Petstore server.",
+        "description": "This is a sample server.",
         "title": "Swagger Example API",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
@@ -15,8 +15,8 @@
         },
         "version": "1.0"
     },
-    "host": "petstore.swagger.io",
-    "basePath": "/v2",
+    "host": "localhost:8089",
+    "basePath": "/",
     "paths": {
         "/ping": {
             "get": {

@@ -17,5 +17,22 @@
     },
     "host": "petstore.swagger.io",
     "basePath": "/v2",
-    "paths": {}
+    "paths": {
+        "/ping": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "路由检测",
+                "responses": {
+                    "200": {
+                        "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
