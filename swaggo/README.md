@@ -32,7 +32,7 @@ API文档自动生成分为如下三步：
 @BasePath|API的 base path
 
 示例如下：
-```goregexp
+```go
 // @title Swagger Example API
 // @version 1.0
 // @description This is a sample server Petstore server.
@@ -89,7 +89,7 @@ Data Type：
 * user defined struct
 
 示例如下：
-```goregexp
+```go
 // @description 进行路由检测
 // @summary 用于路由检测
 // @tags example
@@ -163,12 +163,12 @@ swag init --generalInfo ./cmd/main.go
 
 2.将生成的 docs/目录隐式import。
 新增路由：
-```goregexp
+```go
 router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 ```
 在设定路由的文件中，需要包含下列头文件：
 
-```goregexp
+```go
 import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
