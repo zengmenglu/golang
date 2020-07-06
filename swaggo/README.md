@@ -12,7 +12,7 @@ API文档自动生成分为如下三步：
 ## 代码添加注释
 
 注释分为两类，
-* 对APP服务功能的整体描述；
+* 对整体功能的描述；
 * 对每一个restful API的描述。
 
 1.整体功能描述的注释常用的标签如下：
@@ -117,22 +117,22 @@ func get(c *gin.Context){
 ## 安装Swag CLI
 
 1.安装gin插件
-```
+```shell script
 go get -u -v github.com/gin-gonic/gin
 ```
 
 2.安装swag CLI
-```
+```shell script
 go get -u github.com/swaggo/swag/cmd/swag
 ```
 
 3.执行完成后，需要将swag所在路径设置为PATH，将$GOPATH/bin 加入到$PATH中：
-```
+```shell script
 export PATH=$PATH:$GOPATH/bin
 ``` 
 
 4.验证Swag CLI是否成功：
-```
+```shell script
 swag -v
 ```
 
