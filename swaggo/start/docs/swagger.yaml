@@ -5,16 +5,24 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server.
+  description: This is a sample for getting started.
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: Swagger Example API
+  title: Swagger Get Started API
   version: "1.0"
 paths:
   /ping:
     get:
+      consumes:
+      - application/json
+      description: 进行路由检测
+      parameters:
+      - description: user id
+        in: query
+        name: id
+        type: integer
       produces:
       - application/json
       responses:
@@ -22,5 +30,11 @@ paths:
           description: '{"code":200,"data":{},"msg":"ok"}'
           schema:
             type: string
-      summary: 路由检测
+        "400":
+          description: '{"code":400,"data":{},"msg":"fail"}'
+          schema:
+            type: string
+      summary: 用于路由检测
+      tags:
+      - example
 swagger: "2.0"

@@ -35,13 +35,34 @@ var doc = `{
     "paths": {
         "/ping": {
             "get": {
+                "description": "进行路由检测",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "路由检测",
+                "tags": [
+                    "example"
+                ],
+                "summary": "用于路由检测",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "user id",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "{\"code\":400,\"data\":{},\"msg\":\"fail\"}",
                         "schema": {
                             "type": "string"
                         }
@@ -67,8 +88,8 @@ var SwaggerInfo = swaggerInfo{
 	Host:        "localhost:8089",
 	BasePath:    "/",
 	Schemes:     []string{},
-	Title:       "Swagger Example API",
-	Description: "This is a sample server.",
+	Title:       "Swagger Get Started API",
+	Description: "This is a sample for getting started.",
 }
 
 type s struct{}

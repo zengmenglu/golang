@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "This is a sample server.",
-        "title": "Swagger Example API",
+        "description": "This is a sample for getting started.",
+        "title": "Swagger Get Started API",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "API Support",
@@ -20,13 +20,34 @@
     "paths": {
         "/ping": {
             "get": {
+                "description": "进行路由检测",
+                "consumes": [
+                    "application/json"
+                ],
                 "produces": [
                     "application/json"
                 ],
-                "summary": "路由检测",
+                "tags": [
+                    "example"
+                ],
+                "summary": "用于路由检测",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "user id",
+                        "name": "id",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{\"code\":200,\"data\":{},\"msg\":\"ok\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "{\"code\":400,\"data\":{},\"msg\":\"fail\"}",
                         "schema": {
                             "type": "string"
                         }
