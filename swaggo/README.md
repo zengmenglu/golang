@@ -162,6 +162,7 @@ swag init --generalInfo ./cmd/main.go
 ```
 
 2.将生成的 docs/目录隐式import。
+
 新增路由：
 ```go
 router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
