@@ -1,4 +1,8 @@
 {
+    "schemes": [
+        "http",
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "This is a sample for getting started.",
@@ -31,6 +35,7 @@
                     "example"
                 ],
                 "summary": "用于路由检测",
+                "operationId": "example-get-id",
                 "parameters": [
                     {
                         "type": "integer",
@@ -55,5 +60,18 @@
                 }
             }
         }
+    },
+    "tags": [
+        {
+            "description": "This is App tag",
+            "name": "App Tag.",
+            "externalDocs": {
+                "description": "This is outer tag",
+                "url": "http://swagger.io/terms/"
+            }
+        }
+    ],
+    "x-example-key": {
+        "key": "value"
     }
 }

@@ -12,6 +12,12 @@ import (
 // @title Swagger Get Started API
 // @version 1.0
 // @description This is a sample for getting started.
+
+// @tag.name App Tag.
+// @tag.description This is App tag
+// @tag.docs.url http://swagger.io/terms/
+// @tag.docs.description This is outer tag
+
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name API Support
@@ -22,6 +28,10 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @host localhost:8089
 // @basePath /
+
+// @query.collection.format multi
+// @schemes http https
+// @x-example-key {"key": "value"}
 func main(){
 	r := gin.Default()
 	config := &ginSwagger.Config{
@@ -33,6 +43,7 @@ func main(){
 }
 
 // @description 进行路由检测
+// @id example-get-id
 // @summary 用于路由检测
 // @tags example
 // @accept json

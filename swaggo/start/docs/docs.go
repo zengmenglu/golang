@@ -46,6 +46,7 @@ var doc = `{
                     "example"
                 ],
                 "summary": "用于路由检测",
+                "operationId": "example-get-id",
                 "parameters": [
                     {
                         "type": "integer",
@@ -70,6 +71,19 @@ var doc = `{
                 }
             }
         }
+    },
+    "tags": [
+        {
+            "description": "This is App tag",
+            "name": "App Tag.",
+            "externalDocs": {
+                "description": "This is outer tag",
+                "url": "http://swagger.io/terms/"
+            }
+        }
+    ],
+    "x-example-key": {
+        "key": "value"
     }
 }`
 
@@ -87,7 +101,7 @@ var SwaggerInfo = swaggerInfo{
 	Version:     "1.0",
 	Host:        "localhost:8089",
 	BasePath:    "/",
-	Schemes:     []string{},
+	Schemes:     []string{"http", "https"},
 	Title:       "Swagger Get Started API",
 	Description: "This is a sample for getting started.",
 }

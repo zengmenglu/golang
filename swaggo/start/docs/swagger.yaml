@@ -18,6 +18,7 @@ paths:
       consumes:
       - application/json
       description: 进行路由检测
+      operationId: example-get-id
       parameters:
       - description: user id
         in: query
@@ -37,4 +38,15 @@ paths:
       summary: 用于路由检测
       tags:
       - example
+schemes:
+- http
+- https
 swagger: "2.0"
+tags:
+- description: This is App tag
+  externalDocs:
+    description: This is outer tag
+    url: http://swagger.io/terms/
+  name: App Tag.
+x-example-key:
+  key: value

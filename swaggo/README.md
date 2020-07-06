@@ -36,7 +36,14 @@ API文档自动生成分为如下三步：
 // @title Swagger Example API
 // @version 1.0
 // @description This is a sample server Petstore server.
+
+// @tag.name App Tag.
+// @tag.description This is App tag
+// @tag.docs.url http://swagger.io/terms/
+// @tag.docs.description This is outer tag
+
 // @termsOfService http://swagger.io/terms/
+
 // @contact.name API Support
 // @contact.url http://www.swagger.io/support
 // @contact.email support@swagger.io
@@ -44,6 +51,10 @@ API文档自动生成分为如下三步：
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 // @host localhost:8089
 // @BasePath /
+
+// @query.collection.format multi
+// @schemes http https
+// @x-example-key {"key": "value"}
 func main(){
 	r := gin.Default()
 	config := &ginSwagger.Config{
@@ -55,6 +66,7 @@ func main(){
 }
 ```
 效果如下：
+
 ![](pic/swag.png)
 
 2.API描述常用标签如下：
@@ -109,7 +121,7 @@ func get(c *gin.Context){
 ![](pic/swag_api.png)
 
 > 注释规范详见：
->* https://swaggo.github.io/swaggo.io/declarative_comments_format/general_api_info.html
+>* https://github.com/swaggo/swag
 
 ## 安装Swag CLI
 
@@ -143,22 +155,22 @@ swag init [command options] [arguments...]
 
 命令 |描述
 |---|---|
- --generalInfo value, -g value    |指定main函数的位置 (默认值: "main.go")
+ --generalInfo value, -g value    |指定API通用信息所在的go源文件路径 (默认值: "main.go")
    --dir value, -d value       | 解析的路径 (默认值: "./")
    --exclude value              |解析时排除的路径和文件，用逗号分隔
    --propertyStrategy value, -p value|指定命名规范，如snakecase,camelcase,pascalcase (默认值: "camelcase")
    --output value, -o value           | 生成API文档docs/的目录，推荐放在项目根目录下(默认值: "./docs")
-   --parseVendor                       |解析vendor文件夹中的go文件 (默认值: false)
-   --parseDependency                   |解析外部依赖文件夹中的go文件(默认值: false)
-   --markdownFiles value, --md value   |将markdown文件解析成description(默认值: false)
-   --parseInternal                     |解析internal包中的go文件(默认值: false)
-   --generatedTime                     |在docs.go文件开头加上时间戳 (默认值: false)
+   --parseVendor                       |是否解析vendor文件夹中的go文件 (默认值: false)
+   --parseDependency                   |是否解析外部依赖文件夹中的go文件(默认值: false)
+   --markdownFiles value, --md value   |将指定目录中的markdown文件解析成API的description，默认不解析
+   --parseInternal                     |是否解析internal包中的go文件(默认值: false)
+   --generatedTime                     |是否在docs.go文件开头加上时间戳 (默认值: false)
    --help, -h                          |show help (默认值: false)
 
 例：当main函数不在项目根目录下时需要加上参数，指定main函数的位置。
 
 ```shell script
-swag init --generalInfo ./cmd/main.go
+swag init -g ./cmd/main.go
 ```
 
 2.将生成的 docs/目录隐式import。
@@ -187,3 +199,4 @@ import (
 > * 官方文档：https://swaggo.github.io/swaggo.io/
 > * 官方文档：https://godoc.org/github.com/swaggo/gin-swagger
 > * 官方网站：https://swagger.io/support/
+> * swag文档：https://github.com/swaggo/swag/blob/master/README_zh-CN.md
