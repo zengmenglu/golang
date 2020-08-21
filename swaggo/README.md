@@ -199,7 +199,7 @@ import (
 
 3.查看API文档
 
-浏览器打开host:port/swag/index.html 即可查看生成的API文档。
+浏览器打开host:port/swagger/index.html 即可查看生成的API文档。
 
 > 参考资料
 > * swaggo源码：https://github.com/swaggo/gin-swagger
