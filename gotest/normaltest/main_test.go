@@ -4,7 +4,7 @@ import "testing"
 
 func TestHelloWorld(t *testing.T) {
 
-	t.Error("TestHelloWorld")
+	t.Log("TestHelloWorld")
 	HelloWorld()
 }
 
