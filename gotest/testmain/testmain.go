@@ -1,5 +1,0 @@
-package testmain
-
-func Add(){
-
-}

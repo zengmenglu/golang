@@ -1,4 +1,4 @@
-package benchmark
+package gotest
 
 import (
 	"testing"
@@ -26,7 +26,7 @@ func BenchmarkAddArray(b *testing.B) {
 	}
 }
 
-var testCases = []struct {
+var benchCases = []struct {
 	name string
 	arr  []int
 }{
@@ -37,7 +37,7 @@ var testCases = []struct {
 
 // Run() - subtests
 func BenchmarkAddArray2(b *testing.B) {
-	for _, arr := range testCases {
+	for _, arr := range benchCases {
 		b.Run(arr.name, func(b *testing.B) { // run sub benchmark tests
 			for i := 0; i < b.N; i++ {
 				AddArray(arr.arr)
@@ -48,7 +48,7 @@ func BenchmarkAddArray2(b *testing.B) {
 
 // without Run() cannot make sub-benchmark test
 func BenchmarkAddArray3(b *testing.B) {
-	for _, arr := range testCases {
+	for _, arr := range benchCases {
 		for i := 0; i < b.N; i++ {
 			AddArray(arr.arr)
 		}
@@ -57,7 +57,7 @@ func BenchmarkAddArray3(b *testing.B) {
 
 // 并行测试
 func BenchmarkAddArray4(b *testing.B) {
-	for _, c := range testCases {
+	for _, c := range benchCases {
 		arr := c
 		b.RunParallel(func(pb *testing.PB) {
 			for pb.Next() {

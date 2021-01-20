@@ -1,4 +1,11 @@
-package benchmark
+package gotest
+
+import "fmt"
+
+func HelloWorld() error{
+	fmt.Println("hello world")
+	return nil
+}
 
 func Add() {
 	var n int
@@ -18,4 +25,11 @@ func AddArray(arr []int) {
 
 func Parallel() {
 
+}
+
+
+
+func PrintWords(s string) string {
+	fmt.Println(s)
+	return s
 }

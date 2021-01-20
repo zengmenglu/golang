@@ -1,8 +1,19 @@
-package tests
+package gotest
 
 import (
 	"testing"
 )
+
+// get started: 一个最简单的单元测试用例
+func TestHelloWorld(t *testing.T) {
+	if err := HelloWorld(); err != nil{
+		t.Fail()
+		t.Errorf("test fail, err:%s\n", err)
+	}else{
+		t.Log("test success")
+	}
+	t.Log("test finish")
+}
 
 var testCases = []struct {
 	name string
@@ -13,10 +24,7 @@ var testCases = []struct {
 	{"triple", "aaa"},
 }
 
-func TestHelloWorld(t *testing.T) {
-	t.Log("TestHelloWorld")
-	HelloWorld()
-}
+
 
 // Run() - subtests
 func TestPrintWords(t *testing.T) {
