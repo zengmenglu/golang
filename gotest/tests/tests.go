@@ -2,14 +2,14 @@ package tests
 
 import "fmt"
 
-func HelloWorld(){
+func HelloWorld() {
 	fmt.Println("hello world")
-	if false{
+	if false {
 		fmt.Println("hi world")
 	}
 }
 
-func PrintWords(s string)string{
+func PrintWords(s string) string {
 	fmt.Println(s)
 	return s
 }

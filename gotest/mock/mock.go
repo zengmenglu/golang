@@ -2,10 +2,10 @@ package mock
 
 import "fmt"
 
-var text = func(){
+var text = func() {
 	fmt.Println("print text")
 }
 
-func Mock(){
+func Mock() {
 	text()
 }
