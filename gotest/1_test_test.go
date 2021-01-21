@@ -4,16 +4,26 @@ import (
 	"testing"
 )
 
-// get started: 一个最简单的单元测试用例
+
+// get started: 一个最简单的测试函数
+//要点：
+// 1-测试文件以 _test.go 结尾
+// 2-测试函数形如 TestXxx(), Xxx 部分不可以小写开头
+// 3-测试函数入参 testing.T， 这个数据结构用于管理测试状态，并提供格式化日志功能（t.Log， t.Errorf等）
 func TestHelloWorld(t *testing.T) {
 	if err := HelloWorld(); err != nil{
-		t.Fail()
 		t.Errorf("test fail, err:%s\n", err)
 	}else{
 		t.Log("test success")
 	}
-	t.Log("test finish")
 }
+
+/*
+运行测试函数有2种模式：
+1. 本地目录模式
+
+*/
+
 
 var testCases = []struct {
 	name string
