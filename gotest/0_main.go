@@ -3,17 +3,15 @@ package gotest
 import "fmt"
 
 func HelloWorld() error{
+	for i:=0;i<1000000;i++{
+		fmt.Sprintf("%d",i)
+	}
 	fmt.Println("hello world")
 	return nil
 }
 
-func Add() {
-	var n int
-	var nums []int
-	for i := 0; i < 100; i++ {
-		n += i
-		nums = append(nums, i)
-	}
+func AddNum(a,b int)int{
+	return a+b
 }
 
 func AddArray(arr []int) {
@@ -23,13 +21,3 @@ func AddArray(arr []int) {
 	}
 }
 
-func Parallel() {
-
-}
-
-
-
-func PrintWords(s string) string {
-	fmt.Println(s)
-	return s
-}
