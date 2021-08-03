@@ -8,5 +8,6 @@ require (
 	github.com/jinzhu/gorm v1.9.16
 	github.com/stretchr/testify v1.7.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0
+	github.com/tecbot/gorocksdb v0.0.0-20191217155057-f0fad39f321c // indirect
 
 )
