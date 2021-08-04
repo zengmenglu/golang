@@ -18,13 +18,15 @@ var (
 	pebblePath = "./data/pebble"
 )
 var (
-	levelDBWo *opt.WriteOptions
+	levelDBWoNoSync *opt.WriteOptions
+	levelDBWoSync   *opt.WriteOptions
 )
 
 func init() {
 	rand.Seed(time.Now().UnixNano())
 
-	levelDBWo = &opt.WriteOptions{Sync: true}
+	levelDBWoNoSync = nil
+	levelDBWoSync = &opt.WriteOptions{Sync: true}
 }
 
 const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
@@ -44,17 +46,26 @@ func randByte() []byte {
 }
 
 // level
-func BenchmarkLevelSet(b *testing.B) {
+func BenchmarkLevelSetNoSync(b *testing.B) {
 	levelDB := leveldb.NewLevelDB(levelPath)
 	defer levelDB.Close()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		s := randByte()
-		levelDB.Put(s, s, levelDBWo)
+		levelDB.Put(s, s, levelDBWoNoSync)
+	}
+}
+func BenchmarkLevelSetSync(b *testing.B) {
+	levelDB := leveldb.NewLevelDB(levelPath)
+	defer levelDB.Close()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s := randByte()
+		levelDB.Put(s, s, levelDBWoSync)
 	}
 }
 
-func BenchmarkLevelBatchSet(b *testing.B) {
+func BenchmarkLevelBatchSetNoSync(b *testing.B) {
 	levelDB := leveldb.NewLevelDB(levelPath)
 	defer levelDB.Close()
 	b.ResetTimer()
@@ -64,19 +75,46 @@ func BenchmarkLevelBatchSet(b *testing.B) {
 		batch := new(leveldb2.Batch)
 		batch.Put(s, s)
 		batch.Put(s1, s1)
-		levelDB.Write(batch, levelDBWo)
+		levelDB.Write(batch, levelDBWoNoSync)
 	}
 }
-func BenchmarkLevelDBDel(b *testing.B) {
+
+func BenchmarkLevelBatchSetSync(b *testing.B) {
+	levelDB := leveldb.NewLevelDB(levelPath)
+	defer levelDB.Close()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s := randByte()
+		s1 := randByte()
+		batch := new(leveldb2.Batch)
+		batch.Put(s, s)
+		batch.Put(s1, s1)
+		levelDB.Write(batch, levelDBWoSync)
+	}
+}
+
+func BenchmarkLevelDBDelNoSync(b *testing.B) {
 	db := leveldb.NewLevelDB(levelPath)
 	defer db.Close()
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
 		s := randByte()
-		db.Delete(s, levelDBWo)
+		db.Delete(s, levelDBWoNoSync)
 	}
 }
+
+func BenchmarkLevelDBDelSync(b *testing.B) {
+	db := leveldb.NewLevelDB(levelPath)
+	defer db.Close()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		s := randByte()
+		db.Delete(s, levelDBWoSync)
+	}
+}
+
 func BenchmarkLevelGet(b *testing.B) {
 	levelDB := leveldb.NewLevelDB(levelPath)
 	defer levelDB.Close()
@@ -88,7 +126,7 @@ func BenchmarkLevelGet(b *testing.B) {
 }
 
 // pebble
-func BenchmarkPebbleSet(b *testing.B) {
+func BenchmarkPebbleSetSync(b *testing.B) {
 	pebbleDB := pebbledb.NewPebbleDB(pebblePath)
 	defer pebbleDB.Close()
 	b.ResetTimer()
@@ -98,7 +136,17 @@ func BenchmarkPebbleSet(b *testing.B) {
 	}
 }
 
-func BenchmarkPebbleBatchSet(b *testing.B) {
+func BenchmarkPebbleSetNoSync(b *testing.B) {
+	pebbleDB := pebbledb.NewPebbleDB(pebblePath)
+	defer pebbleDB.Close()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s := randByte()
+		pebbleDB.Set(s, s, pebble.NoSync)
+	}
+}
+
+func BenchmarkPebbleBatchSetSync(b *testing.B) {
 	pebbleDB := pebbledb.NewPebbleDB(pebblePath)
 	defer pebbleDB.Close()
 	b.ResetTimer()
@@ -112,7 +160,21 @@ func BenchmarkPebbleBatchSet(b *testing.B) {
 	}
 }
 
-func BenchmarkPebbleDel(b *testing.B) {
+func BenchmarkPebbleBatchSetNoSync(b *testing.B) {
+	pebbleDB := pebbledb.NewPebbleDB(pebblePath)
+	defer pebbleDB.Close()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s := randByte()
+		s1 := randByte()
+		batch := pebbleDB.NewBatch()
+		batch.Set(s, s, nil)
+		batch.Set(s1, s1, nil)
+		pebbleDB.Apply(batch, pebble.NoSync)
+	}
+}
+
+func BenchmarkPebbleDelSync(b *testing.B) {
 	db := pebbledb.NewPebbleDB(pebblePath)
 	defer db.Close()
 	b.ResetTimer()
@@ -120,6 +182,17 @@ func BenchmarkPebbleDel(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		s := randByte()
 		db.Delete(s, pebble.Sync)
+	}
+}
+
+func BenchmarkPebbleDelNoSync(b *testing.B) {
+	db := pebbledb.NewPebbleDB(pebblePath)
+	defer db.Close()
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		s := randByte()
+		db.Delete(s, pebble.NoSync)
 	}
 }
 

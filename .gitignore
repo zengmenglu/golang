@@ -2,3 +2,4 @@
 */.idea/
 *.exe
 .idea/
+godb_performance/data/*
